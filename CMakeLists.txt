@@ -50,11 +50,23 @@ IF (WIN32)
         lib/jcwk/Win32/Mouse.cpp
         ${PLATFORM_INDEPENDENT_FILES}
     )
+    target_link_libraries(
+        main
+        ${Vulkan_LIBRARIES}
+        dinput8.lib
+        dxguid.lib
+    )
+ELSE()
+    add_executable(
+        main
+        src/MainX11.cpp
+        ${PLATFORM_INDEPENDENT_FILES}
+    )
+    target_link_libraries(
+        main
+        ${Vulkan_LIBRARIES}
+        dinput8.lib
+        dxguid.lib
+    )
 ENDIF()
 
-target_link_libraries(
-    main
-    ${Vulkan_LIBRARIES}
-    dinput8.lib
-    dxguid.lib
-)
